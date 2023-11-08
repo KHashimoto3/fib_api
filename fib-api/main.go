@@ -1,4 +1,4 @@
-package demoapi
+package main
 
 import (
 	"fmt"
@@ -7,11 +7,24 @@ import (
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 )
 
-func init() {
-	functions.HTTP("AisatuGet", aisatuGet)
+type Fib struct {
+	Result	int32	`json:"result"`
 }
 
-// こんにちは！と返すだけの関数
-func aisatuGet(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "こんにちは！")
+func init() {
+	functions.HTTP("Fib", clucFib)
+}
+
+// フィボナッチ数を返す
+func clucFib(w http.ResponseWriter, r *http.Request) {
+	//仮で値を代入
+	fibResult := Fib {
+		result: 5000
+	}
+	//JSONデータの書き込み
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	w.WriteHeader(http.StatusOK)
+	if err := json.NewEncoder(w).Encode(fibResult); err != nil {
+		log.Println(err)
+	}
 }
