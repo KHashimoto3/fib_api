@@ -34,6 +34,14 @@ func getFib(c *gin.Context) {
 	})
 }
 
+func setupRouter() *gin.Engine {
+	router := gin.Default()
+
+	router.GET("/", hello)
+	router.GET("/fib", getFib)
+	return router
+}
+
 func fib(n int64) int64 {
 	if n <= 2 {
 		return 1
@@ -43,9 +51,6 @@ func fib(n int64) int64 {
 
 
 func main() {
-	router := gin.Default()
-
-	router.GET("/", hello)
-	router.GET("/fib", getFib)
+	router := setupRouter()
 	router.Run(":8080")
 }
