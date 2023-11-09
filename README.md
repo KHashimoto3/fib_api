@@ -18,7 +18,11 @@ https://fib-api-kqqc.onrender.com/
 レスポンス：`{"result": {値}}`
 
 ### レスポンス （エラー）
+状況：パラメータが渡されなかった場合  
+ステータス：400  
+レスポンス：`{"error": "nの値が渡されていません。"}`
 
+状況：渡されたパラメータnが1未満の場合  
 ステータス：400  
 レスポンス：`{"error": "1未満のnの値を渡そうとしました。"}`
 
@@ -38,6 +42,4 @@ https://fib-api-kqqc.onrender.com/
 
 以下のコマンドを実行
 
-- `cd fib-api`
-- `go mod tidy`
 - `go test -v .`
