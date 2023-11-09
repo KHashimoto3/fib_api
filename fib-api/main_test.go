@@ -4,16 +4,32 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"strconv"
 
 	"github.com/stretchr/testify/assert"
 )
 
-func TestFibRoute(t *testing.T) {
-	router := setupRouter()
-	w := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", "/fib?n=3", nil)
-	router.ServeHTTP(w, req)
+type TestCase struct {
+	param int
+	code int
+	result string
+}
 
-	assert.Equal(t, 200, w.Code)
-	assert.Equal(t, w.Body.String(), "{\"result\":2}")
+func TestFibRoute(t *testing.T) {
+
+	//テストケース追加の場合はここに追加する
+	testCase := []*TestCase{
+		{3, 200, "{\"result\":2}"},
+		{1, 200, "{\"result\":1}"},
+	}
+
+	for _, v := range testCase {
+		router := setupRouter()
+		w := httptest.NewRecorder()
+		request := "/fib?n=" + strconv.Itoa(v.param)
+		req, _ := http.NewRequest("GET", request, nil)
+		router.ServeHTTP(w, req)
+		assert.Equal(t, v.code, w.Code)
+		assert.Equal(t, w.Body.String(), v.result)
+	}
 }
