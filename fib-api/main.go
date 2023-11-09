@@ -11,14 +11,17 @@ func hello(c *gin.Context) {
 }
 
 func getFib(c *gin.Context) {
-	answer := fib(400)
+	answer := fib(20)
 	c.JSON(200, gin.H{
 		"result": answer,
 	})
 }
 
 func fib(n int32) int32 {
-	return 500
+	if n <= 2 {
+		return 1
+	}
+	return fib(n - 2) + fib(n - 1)
 }
 
 
