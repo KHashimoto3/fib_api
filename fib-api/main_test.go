@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestPingRoute(t *testing.T) {
+func TestFibRoute(t *testing.T) {
 	router := setupRouter()
 	w := httptest.NewRecorder()
 	req, _ := http.NewRequest("GET", "/fib?n=3", nil)
