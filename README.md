@@ -6,17 +6,6 @@
 
 https://fib-api-kqqc.onrender.com/
 
-## 環境構築方法
-
-1. リポジトリをクローン
-2. 以下のコマンドを実行
-
-- `cd fib-api`
-- `go mod tidy`
-- `go run main.go`
-
-3. `localhost:8080/`にアクセス
-
 ## API の仕様
 
 ### リクエスト
@@ -30,8 +19,20 @@ https://fib-api-kqqc.onrender.com/
 
 ### レスポンス （エラー）
 
-ステータス：400
+ステータス：400  
 レスポンス：`{"error": "1未満のnの値を渡そうとしました。"}`
+
+## 環境構築方法
+
+1. リポジトリをクローン
+2. 以下のコマンドを実行
+
+- `cd fib-api`
+- `go mod tidy`
+- `go run main.go`
+
+3. `localhost:8080/`にアクセス
+
 
 ## テストの実行方法
 
