@@ -8,6 +8,8 @@ https://fib-api-kqqc.onrender.com/
 
 ## API の仕様
 
+仕様書：https://valiant-shingle-e5c.notion.site/fib-api-6a9d4ef264164479a0b8e9cd4162c29e?pvs=4
+
 ### リクエスト
 
 `/fib?n={値}`
@@ -18,13 +20,14 @@ https://fib-api-kqqc.onrender.com/
 レスポンス：`{"result": {値}}`
 
 ### レスポンス （エラー）
+
 状況：パラメータが渡されなかった場合  
 ステータス：400  
-レスポンス：`{"error": "nの値が渡されていません。"}`
+レスポンス： `{"code": 400, "error": "Parameter 'n' is required."}`
 
-状況：渡されたパラメータnが1未満の場合  
+状況：渡されたパラメータ n が 1 未満の場合  
 ステータス：400  
-レスポンス：`{"error": "1未満のnの値を渡そうとしました。"}`
+レスポンス：`{"code": 400, "error": "Parameter 'n' is too small."}`
 
 ## 環境構築方法
 
@@ -36,7 +39,6 @@ https://fib-api-kqqc.onrender.com/
 - `go run main.go`
 
 3. `localhost:8080/`にアクセス
-
 
 ## テストの実行方法
 
