@@ -29,7 +29,6 @@ func getFib(c *gin.Context) {
 		return
 	}
 
-
 	answer := fib(nNum)
 
 	c.JSON(200, gin.H{
@@ -49,7 +48,6 @@ func setupRouter() *gin.Engine {
 func fib(n int) *big.Int {
 	bigX := big.NewInt(0)
 	bigY := big.NewInt(1)
-	//sum := big.NewInt(0)
 
 	for i := 0; i < n; i++ {
 		sum := big.NewInt(0)
