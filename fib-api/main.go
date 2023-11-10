@@ -16,14 +16,14 @@ func getFib(c *gin.Context) {
 
 	//パラメータがない場合
 	if n == "" {
-		c.JSON(400, gin.H{"error": "nの値が渡されていません。"})
+		c.JSON(400, gin.H{"code": 400, "error": "Parameter 'n' is required."})
 		return
 	} 
 
 	nNum, _ := strconv.ParseInt(n, 10, 64)
 
 	if nNum < 1 {
-		c.JSON(400, gin.H{"error": "1未満のnの値を渡そうとしました。"})
+		c.JSON(400, gin.H{"code": 400, "error": "Parameter 'n' is too small."})
 		return
 	}
 
