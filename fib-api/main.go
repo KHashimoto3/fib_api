@@ -22,6 +22,7 @@ func getFib(c *gin.Context) {
 
 	nNum, _ := strconv.Atoi(n)
 
+	//パラメータの値が無効な場合
 	if nNum < 1 {
 		c.JSON(400, gin.H{"code": 400, "error": "Parameter 'n' is too small."})
 		return
@@ -43,6 +44,7 @@ func setupRouter() *gin.Engine {
 	return router
 }
 
+//フィボナッチ数を求める関数。計算量を抑えるために積み上げ方式を採用。
 func fib(n int) int {
 	x := 0
 	y := 1
