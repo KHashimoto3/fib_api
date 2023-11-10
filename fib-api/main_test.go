@@ -26,16 +26,16 @@ func TestFibRoute(t *testing.T) {
 		{99, 200, "{\"result\":218922995834555169026}"},
 	}
 
-	//パラメータを渡さない場合のテスト
+	//nパラメータを渡さない場合のテスト
 	router := setupRouter()
-		w := httptest.NewRecorder()
-		request := "/fib"
-		req, _ := http.NewRequest("GET", request, nil)
-		router.ServeHTTP(w, req)
-		assert.Equal(t, 400, w.Code)
-		assert.Equal(t, w.Body.String(), "{\"code\":400,\"error\":\"Parameter 'n' is required.\"}")
+	w := httptest.NewRecorder()
+	request := "/fib"
+	req, _ := http.NewRequest("GET", request, nil)
+	router.ServeHTTP(w, req)
+	assert.Equal(t, 400, w.Code)
+	assert.Equal(t, w.Body.String(), "{\"code\":400,\"error\":\"Parameter 'n' is required.\"}")
 
-	//そのほかのテスト
+	//値が一致するかのテスト
 	for _, v := range testCase {
 		router := setupRouter()
 		w := httptest.NewRecorder()
