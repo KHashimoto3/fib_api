@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"strconv"
+	"math/big"
 )
 
 func hello(c *gin.Context) {
@@ -45,15 +46,18 @@ func setupRouter() *gin.Engine {
 }
 
 //フィボナッチ数を求める関数。計算量を抑えるために積み上げ方式を採用。
-func fib(n int) int {
-	x := 0
-	y := 1
+func fib(n int) *big.Int {
+	bigX := big.NewInt(0)
+	bigY := big.NewInt(1)
+	//sum := big.NewInt(0)
+
 	for i := 0; i < n; i++ {
-		sum := x + y
-		x = y
-		y = sum
+		sum := big.NewInt(0)
+		sum.Add(bigX, bigY)
+		bigX = bigY
+		bigY = sum
 	}
-	return x
+	return bigX
 }
 
 
