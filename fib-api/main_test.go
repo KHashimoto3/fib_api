@@ -21,8 +21,19 @@ func TestFibRoute(t *testing.T) {
 	testCase := []*TestCase{
 		{3, 200, "{\"result\":2}"},
 		{1, 200, "{\"result\":1}"},
+		{-1, 400, "{\"code\":400,\"error\":\"Parameter 'n' is too small.\"}"},
 	}
 
+	//パラメータを渡さない場合のテスト
+	router := setupRouter()
+		w := httptest.NewRecorder()
+		request := "/fib"
+		req, _ := http.NewRequest("GET", request, nil)
+		router.ServeHTTP(w, req)
+		assert.Equal(t, 400, w.Code)
+		assert.Equal(t, w.Body.String(), "{\"code\":400,\"error\":\"Parameter 'n' is required.\"}")
+
+	//そのほかのテスト
 	for _, v := range testCase {
 		router := setupRouter()
 		w := httptest.NewRecorder()
