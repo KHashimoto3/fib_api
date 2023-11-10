@@ -20,7 +20,6 @@ func getFib(c *gin.Context) {
 		return
 	} 
 
-	//nNum, _ := strconv.ParseInt(n, 10, 64)
 	nNum, _ := strconv.Atoi(n)
 
 	if nNum < 1 {
