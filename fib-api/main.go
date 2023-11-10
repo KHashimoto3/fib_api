@@ -20,12 +20,14 @@ func getFib(c *gin.Context) {
 		return
 	} 
 
-	nNum, _ := strconv.ParseInt(n, 10, 64)
+	//nNum, _ := strconv.ParseInt(n, 10, 64)
+	nNum, _ := strconv.Atoi(n)
 
 	if nNum < 1 {
 		c.JSON(400, gin.H{"code": 400, "error": "Parameter 'n' is too small."})
 		return
 	}
+
 
 	answer := fib(nNum)
 
@@ -42,11 +44,15 @@ func setupRouter() *gin.Engine {
 	return router
 }
 
-func fib(n int64) int64 {
-	if n <= 2 {
-		return 1
+func fib(n int) int {
+	x := 0
+	y := 1
+	for i := 0; i < n; i++ {
+		sum := x + y
+		x = y
+		y = sum
 	}
-	return fib(n - 2) + fib(n - 1)
+	return x
 }
 
 
