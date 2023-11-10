@@ -10,9 +10,9 @@ import (
 )
 
 type TestCase struct {
-	param int
-	code int
-	result string
+	param	 int	//パラメータn
+	code 	 int	//返されるステータスコード
+	response string	//返されるレスポンス
 }
 
 func TestFibRoute(t *testing.T) {
@@ -43,6 +43,6 @@ func TestFibRoute(t *testing.T) {
 		req, _ := http.NewRequest("GET", request, nil)
 		router.ServeHTTP(w, req)
 		assert.Equal(t, v.code, w.Code)
-		assert.Equal(t, w.Body.String(), v.result)
+		assert.Equal(t, w.Body.String(), v.response)
 	}
 }
